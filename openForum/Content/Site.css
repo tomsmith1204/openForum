@@ -1,0 +1,114 @@
+﻿/*GENERAL STYLES*/
+
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    font-style: normal;
+}
+
+.h1-strong {
+    font-weight:700;
+}
+
+.table-striped>tbody>tr:nth-child(odd)>td, 
+.table-striped>tbody>tr:nth-child(odd)>th {
+   background-color: #e7e7e7;
+ }
+
+ .box-margin{
+ 	margin: .5em .5em .5em .5em;
+ }
+
+.welcome-bar{
+	display: block;
+	background-color: #000000;
+	height: 20px;
+}
+
+.panel-openForum-main > .panel-heading {
+  color: #fff;
+  background-color: #3f4345;
+  border-color: #3f4345;
+}
+
+figcaption {
+    font-style: italic;
+}
+
+figure {
+    margin-top: 1em;
+}
+/*HEADER STYLES*/
+header {
+
+	background-color:#3f4345;
+	color: #FFFFFF;
+	border-bottom: 8px solid #000000;
+    
+}
+
+.open-logo{
+	color: #FF3935;
+    font-weight: 300;
+}
+
+header a:link {
+	color:#c5dbf1;
+}
+
+header a:visited{
+	color:#c5dbf1;
+}
+
+header a:hover{
+	color: #FFFFFF;
+}
+
+
+/*END HEADER STYLES*/
+
+
+/*FOOTER STYLES*/
+footer {
+	background-color:#3f4345;
+	color: #FFFFFF;
+    border-top: 8px solid #000000;
+    padding: 0 .5em 0 .5em;
+}
+
+footer a:link {
+	color:#c5dbf1;
+}
+
+footer a:visited{
+	color:#c5dbf1;
+}
+
+footer a:hover{
+	color: #FFFFFF;
+}
+
+footer .bracket {
+	font-size: 32px;
+	font-weight: 900;
+}
+
+footer  .table {
+	border-top: 2px solid #3f4345
+}
+
+.love {
+	color:#FF3935;
+}
+/*END FOOTER STYLES*/
+
+/*HACKS*/
+/*stretch footer to bottom of window*/
+html,body, footer { 
+	height:100%;
+}
+/*END HACKS%
