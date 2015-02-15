@@ -36,7 +36,6 @@
                                 <td>@Date</td>
                             </tr>
                         }
-
                     }    
                 </tbody>
             </table>
@@ -47,10 +46,10 @@
                     <span class="caret"></span>
                 </button>
                 <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Another action</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Something else here</a></li>
-                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Separated link</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Newest</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Oldest</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Most Comments</a></li>
+                    <li role="presentation"><a role="menuitem" tabindex="-1" href="#">Hottest</a></li>
                 </ul>
             </span>
             <nav>
@@ -74,26 +73,25 @@
                 <div class="panel-body">
                     <table class="table table-striped">
                         <tbody>
-                            <tr>
-                                <td>Tom</td>
-                                <td>93</td>
-                            </tr>
-                            <tr>
-                                <td>Amber</td>
-                                <td>56</td>
-                            </tr>
-                            <tr>
-                                <td>Sophia</td>
-                                <td>17</td>
-                            </tr>
-                            <tr>
-                                <td>Nick</td>
-                                <td>13</td>
-                            </tr>
-                            <tr>
-                                <td>AllyCat</td>
-                                <td>1</td>
-                            </tr>
+                            @{
+                                
+                                var userCommand = "SELECT TOP 5 UserName, PostCount " +
+					                                "FROM dbo.Users " +
+					                                "ORDER BY PostCount DESC ";
+
+                                var topUserQuery = db.Query(userCommand);
+                                
+                                foreach (var row in topUserQuery)
+                                {
+                                    var user = row.UserName;
+                                    var posts = row.PostCount;
+                                    <tr>
+                                        <td>@user</td>
+                                        <td>@posts</td>
+                                    </tr>
+                                }
+                                db.Close();
+                            }
                         </tbody>
                     </table>
                 </div>
