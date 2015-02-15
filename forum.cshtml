@@ -2,19 +2,6 @@
     Layout = "~/_SiteLayout.cshtml";
     Page.Title = "Forum Index";
 }
-
-    <!-- get thread title and start date from THREADS table,
-	     use the User_ID stored in the THREADS table to
-	     get the corresponding User_Name in the USERS table
-	-->
-
-<!--
-	$query = mysql_query("SELECT THREADS.Title, THREADS.Date, USERS.User_Name
-				FROM THREADS
-				INNER JOIN USERS
-				ON THREADS.USER_ID=USERS.User_ID
-				GROUP BY Date DESC");
--->
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-7 col-md-offset-1">
@@ -24,50 +11,33 @@
                     <tr>
                         <th>Title</th>
                         <th>Author</th>
-                        <th>Started On</th>
+                        <th>Submitted On</th>
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                        string userName;
-                        string connectionString = "Data Source=hmxchi56xh.database.windows.net;Initial Catalog=openforum_db;Integrated Security=False;User ID=tomsmith1204;Password=t@costand420;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False";
-                        var db = Database.Open(connectionString);
 
-                        var dbCommand = "SELECT * FROM USERS WHERE ID = '1'"; // Select the name where id=1
-                        var row = db.QuerySingle(dbCommand);
-                        if (row != null)
+                        var db = Database.Open("dbConnection");
+                        var dbCommand = "SELECT dbo.Threads.Title, dbo.Threads.Date, dbo.Users.UserName " +
+                                        "FROM dbo.Threads INNER JOIN dbo.Users " +
+                                        "ON dbo.Threads.UserID=dbo.Users.UserID " +
+                                        "ORDER BY Date DESC";
+
+
+                        var query = db.Query(dbCommand);
+                        foreach (var row in query )
                         {
-                            userName = row.Name;
-                        } 
-                              
-                        <p>userName</p>
-                        
-                    }
-                    <tr>
-                        <td>Check this out</td>
-                        <td>Tom</td>
-                        <td>Today at 11:09</td>
-                    </tr>
-                    <tr>
-                        <td>Look at me!</td>
-                        <td>Amber</td>
-                        <td>Today at 9:15</td>
-                    </tr>
-                    <tr>
-                        <td>WooHoooo!</td>
-                        <td>Sophia</td>
-                        <td>Today at 1:00</td>
-                    </tr>
-                    <tr>
-                        <td>Ball Ball!</td>
-                        <td>Nick</td>
-                        <td>Yesterday at 1:04</td>
-                    </tr>
-                    <tr>
-                        <td>Meow.</td>
-                        <td>AllyCat</td>
-                        <td>Yesterday at 9:17</td>
-                    </tr>
+                            var Title = row.Title;
+                            var Author = row.UserName;
+                            var Date = row.Date;
+                            <tr>
+                                <td>@Title</td>
+                                <td>@Author</td>
+                                <td>@Date</td>
+                            </tr>
+                        }
+
+                    }    
                 </tbody>
             </table>
             <button id="new-thread-btn" type="button" class="btn btn-success">New Thread </button>
