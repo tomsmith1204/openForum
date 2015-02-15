@@ -28,6 +28,21 @@
                     </tr>
                 </thead>
                 <tbody>
+                    @{
+                        string userName;
+                        string connectionString = "Data Source=hmxchi56xh.database.windows.net;Initial Catalog=openforum_db;Integrated Security=False;User ID=tomsmith1204;Password=t@costand420;Connect Timeout=60;Encrypt=False;TrustServerCertificate=False";
+                        var db = Database.Open(connectionString);
+
+                        var dbCommand = "SELECT * FROM USERS WHERE ID = '1'"; // Select the name where id=1
+                        var row = db.QuerySingle(dbCommand);
+                        if (row != null)
+                        {
+                            userName = row.Name;
+                        } 
+                              
+                        <p>userName</p>
+                        
+                    }
                     <tr>
                         <td>Check this out</td>
                         <td>Tom</td>
