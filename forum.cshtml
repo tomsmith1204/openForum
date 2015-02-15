@@ -18,7 +18,7 @@
                     @{
 
                         var db = Database.Open("dbConnection");
-                        var dbCommand = "SELECT dbo.Threads.Title, dbo.Threads.Date, dbo.Users.UserName " +
+                        var dbCommand = "SELECT TOP 5 dbo.Threads.Title, dbo.Threads.Date, dbo.Users.UserName " +
                                         "FROM dbo.Threads INNER JOIN dbo.Users " +
                                         "ON dbo.Threads.UserID=dbo.Users.UserID " +
                                         "ORDER BY Date DESC";
