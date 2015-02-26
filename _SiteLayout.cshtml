@@ -20,7 +20,7 @@
                 //ViewData["userSession"] = System.Web.HttpContext.Current.Session["userSession"] as String;
 
                 //testing variable to act as session variable
-                bool fakeSession = true;
+                bool fakeSession = false;
 
                 //logic to choose a welcome bar depending on userSession state
                 if (fakeSession)
@@ -32,7 +32,7 @@
                     <nav class="navbar navbar-inverse login-bar" role="navigation">
                         <div class="container-fluid">
                             <span>
-                                Not a member? Please consider <a href="#">signing up</a>!
+                                Not a member? Please consider <a href="~/signup.cshtml">Signing up</a>!
                             </span>
                             <form class="navbar-form navbar-right" role="search" method="post" action="">
                                 <div class="form-group form-group-xs">
@@ -79,9 +79,9 @@
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
+           
                 @RenderBody()
-            </section>
+            
         </div>
         <footer>
             <div class="container-fluid">
