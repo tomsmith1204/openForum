@@ -5,8 +5,9 @@
         <title>@Page.Title - openForum</title>
         <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
         <link href='http://fonts.googleapis.com/css?family=Lato:300,700&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
-        <link href="/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
-        <link href="/Content/Site.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/css/bootstrap.min.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/css/dataTables.bootstrap.css" rel="stylesheet" type="text/css" />
+        <link href="~/Content/css/Site.css" rel="stylesheet" type="text/css" />
         <link href="/favicon.ico" rel="shortcut icon" type="image/x-icon" />
         <meta name="viewport" content="width=device-width" />
     </head>
@@ -19,7 +20,7 @@
                 //ViewData["userSession"] = System.Web.HttpContext.Current.Session["userSession"] as String;
 
                 //testing variable to act as session variable
-                bool fakeSession = false;
+                bool fakeSession = true;
 
                 //logic to choose a welcome bar depending on userSession state
                 if (fakeSession)
@@ -61,7 +62,7 @@
                     </div>
                     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                         <ul class="nav navbar-nav">
-                            <li class="active"><a href="~/Default.cshtml">Home</a></li>
+                            <li class="active"><a href="~/Default.cshtml"><span class="glyphicon glyphicon-home" aria-hidden="true"></span> Home</a></li>
                             <li><a href="~/forum.cshtml">Forum</a></li>
                             <li><a href="#">User List</a></li>
                             <li><a href="#">Subscriptions <span class="badge">12</span></a></li>
@@ -133,8 +134,17 @@
                 </div>
             </div>
         </footer>
-        <script src="/Scripts/jquery-1.10.2.min.js"></script>
         <script src="/Scripts/bootstrap.min.js"></script>
+        <script type="text/javascript" language="javascript" src="~/Scripts/jquery-1.10.2.min.js"></script>
+        <script type="text/javascript" language="javascript" src="~/Scripts/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" language="javascript" src="~/Scripts/dataTables.boostrap.js"></script>
+        <script type="text/javascript" charset="utf-8">
+            $(document).ready(function () {
+                $('.page-table').dataTable({
+                    "iDisplayLength": 5
+                });
+            })
+        </script>
         @RenderSection("Scripts", required: false)
     </body>
 </html>
